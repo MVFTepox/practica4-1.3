@@ -56,6 +56,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
 import LablePhone from '../components/LablePhone.vue'
+import router from '../router/Router';
 
 export default defineComponent({
     name: 'RegisterPage',
@@ -71,6 +72,17 @@ export default defineComponent({
         const phone = ref(0);
         const password = ref('');
 
+        function clearregister() {
+            name.value = '';
+            lastName.value = '';
+            username.value = '';
+            email.value = '';
+            phone.value = 0;
+            password.value = '';
+
+
+        }
+
         // Función para el registro
         const register = () => {
             console.log({
@@ -81,6 +93,14 @@ export default defineComponent({
                 phone: phone.value,
                 password: password.value
             });
+
+            alert('Registro exitoso');
+
+            clearregister();
+
+            router.push( '/' )
+        
+
         };
 
         // Computed para construir el usuario
@@ -99,6 +119,7 @@ export default defineComponent({
         });
 
         localStorage.setItem('user', JSON.stringify(user.value));
+        
 
         // Retornar valores y funciones a la plantilla
         return {
